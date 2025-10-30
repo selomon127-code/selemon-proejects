@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solomon Yeneneh | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <nav id="navbar">
+  <div class="container">
+    <h1 class="logo">Solomon</h1>
+
+   
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fa fa-bars"></i>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero"><i class="fa fa-home"></i> Home</a></li>
+      <li><a href="#about"><i class="fa fa-user"></i> About</a></li>
+      <li><a href="#skills"><i class="fa fa-code"></i> Skills</a></li>
+      <li><a href="#projects"><i class="fa fa-briefcase"></i> Projects</a></li>
+      <li><a href="#contact"><i class="fa fa-envelope"></i> Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+  
+  <header id="hero">
+    <div class="container hero-content">
+      <img src="solimage.png" alt="Solomon Yeneneh" class="hero-image" />
+      <div class="hero-text">
+        <h1>Solomon Yeneneh</h1>
+        <h2>Front-End Developer | Gondar University</h2>
+        <p>
+          I’m passionate about crafting responsive and elegant web experiences using HTML, CSS, JavaScript, and C++.
+          I enjoy solving problems and building intuitive digital solutions.
+        </p>
+        <div class="social-links">
+            <a href="https://github.com/selomon127-code/selemon-proejects" class="git" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61572692944575" class="fec" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://t.me/soleee7" class="tel" target="_blank">  <i class="fab fa-telegram"></i></a>
+        </div>
+        <br> <br>
+        <a href="#contact" class="btn hire-btn">Hire Me</a>
+      </div>
+    </div>
+  </header>
+
+
+  <section id="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>
+        I’m Solomon, a Computer Science student at Gondar University, Ethiopia. I’m deeply interested in programming,
+        web development, and innovative problem-solving. My focus areas include frontend development, data structures,
+        and exploring machine learning fundamentals.
+      </p>
+    </div>
+  </section>
+
+
+  <section id="skills">
+    <div class="container">
+      <h2>My Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card"><i class="fab fa-html5"></i><p>HTML</p></div>
+        <div class="skill-card"><i class="fab fa-css3-alt"></i><p>CSS</p></div>
+        <div class="skill-card"><i class="fab fa-js-square"></i><p>JavaScript</p></div>
+        <div class="skill-card"><i class="fab fa-java"></i><p>Java</p></div>
+        <div class="skill-card"><i class="fas fa-code"></i><p>C++</p></div>
+      </div>
+    </div>
+  </section>
+
+<section id="projects">
+  <h2>My Projects</h2>
+  <div class="project-list">
+    <div class="project-card">
+      <h3>Neon Snake</h3>
+      <p>Classic snake game with neon style and high-score tracking.</p>
+      <a href="game.html" target="_blank">Play Game</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Jumping Ball</h3>
+      <p>Animated ball jumping game with obstacles and scoring.</p>
+      <a href="animation.html" target="_blank">Play Game</a>
+    </div>
+  </div>
+</section>
+
+ 
+ <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon" >
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                             <p><a class="eme" href="https://mail.google.com/mail/?view=cm&to=selomon127@gmail.com"
+                              target="_blank">selomon127@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>09 27 60 36 90</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Gondar University, Ethiopia</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" placeholder="Enter your message"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+
+  <footer>
+    <p>© 2025 Solomon Yeneneh | Gondar University | All Rights Reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

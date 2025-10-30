@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jumping Ball — HTML/CSS/JS Game</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at center, #081229, #010511);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+    }
+
+    canvas {
+      background: linear-gradient(180deg, #0c1b3a, #030917);
+      border: 3px solid #00fff7;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00fff7;
+    }
+
+    .hud {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 22px;
+    }
+
+    button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00fff7;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00fff7;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="hud">Score: <span id="score">0</span></div>
+  <canvas id="game" width="600" height="400"></canvas>
+  <button id="startBtn">Start Game</button>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const startBtn = document.getElementById('startBtn');
+    const scoreEl = document.getElementById('score');
+
+    let ball = { x: 100, y: 300, radius: 15, dy: 0 };
+    let gravity = 0.6;
+    let jumpPower = -10;
+    let ground = canvas.height - 30;
+    let obstacles = [];
+    let frame = 0;
+    let score = 0;
+    let gameRunning = false;
+
+    function drawBall() {
+      const glow = ctx.createRadialGradient(ball.x, ball.y, 5, ball.x, ball.y, 20);
+      glow.addColorStop(0, '#00fff7');
+      glow.addColorStop(1, 'transparent');
+      ctx.beginPath();
+      ctx.fillStyle = '#00fff7';
+      ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.closePath();
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.radius * 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function drawObstacles() {
+      ctx.fillStyle = '#ff004c';
+      obstacles.forEach(o => {
+        ctx.fillRect(o.x, o.y, o.w, o.h);
+      });
+    }
+
+    function createObstacle() {
+      const width = 20 + Math.random() * 30;
+      const height = 20 + Math.random() * 60;
+      obstacles.push({ x: canvas.width, y: ground - height, w: width, h: height });
+    }
+
+    function update() {
+      if (!gameRunning) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawBall();
+      drawObstacles();
+
+    
+      ball.dy += gravity;
+      ball.y += ball.dy;
+
+      if (ball.y + ball.radius > ground) {
+        ball.y = ground - ball.radius;
+        ball.dy = 0;
+      }
+
+     
+      obstacles.forEach(o => o.x -= 6);
+      if (frame % 90 === 0) createObstacle();
+      obstacles = obstacles.filter(o => o.x + o.w > 0);
+
+     
+      obstacles.forEach(o => {
+        if (ball.x + ball.radius > o.x && ball.x - ball.radius < o.x + o.w && ball.y + ball.radius > o.y) {
+          gameOver();
+        }
+      });
+
+      
+      if (frame % 10 === 0) {
+        score++;
+        scoreEl.textContent = score;
+      }
+
+      frame++;
+      requestAnimationFrame(update);
+    }
+
+    function jump() {
+      if (ball.y >= ground - ball.radius) {
+        ball.dy = jumpPower;
+      }
+    }
+
+    function gameOver() {
+      gameRunning = false;
+      alert('Game Over! Your score: ' + score);
+      resetGame();
+    }
+
+    function resetGame() {
+      ball.y = 300;
+      ball.dy = 0;
+      obstacles = [];
+      frame = 0;
+      score = 0;
+      scoreEl.textContent = score;
+    }
+
+    startBtn.addEventListener('click', () => {
+      if (!gameRunning) {
+        gameRunning = true;
+        resetGame();
+        update();
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.code === 'Space' || e.key === 'ArrowUp') {
+        jump();
+      }
+    });
+
+    canvas.addEventListener('click', jump);
+  </script>
+</body>
+</html>
